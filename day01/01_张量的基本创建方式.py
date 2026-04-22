@@ -16,7 +16,7 @@ def dm01():
 
   #场景3: numpy nd数组——>张量
   data = np.random.randint(0,10,size=(2,3))
-  t3 = torch.tensor(data)
+  t3 = torch.tensor(data, dtype=torch.float)
   print(f't3:{t3},type:{type(t3)}')
   print('-' * 30)
 
