@@ -4,7 +4,7 @@ import numpy as np
 # 1. 定义函数, 演示: torch.tensor 根据指定数据创建张量
 def dm01():
   # 场景1: 标量 张量
-  t1 = torch.tensor(10)
+  t1 = torch.tensor(10) # 标量，张量里面只能是数值或Boolean
   print(f't1:{t1},type:{type(t1)}')
   print('-' * 30)
 
@@ -69,6 +69,6 @@ def dm03():
   print('-' * 30)
 
 if __name__ == '__main__':
-  # dm01() # 实际使用场景更多，优先掌握
+  dm01() # 实际使用场景更多，优先掌握
   # dm02()
-  dm03()
+  # dm03()

@@ -40,7 +40,10 @@ def dm02():
 
   # 场景2: 符合正态分布的随机张量.
   t2 = torch.randn(size=(2, 3))
+  a = torch.randn(2, 3, 1)
   print(f't2:{t2},type:{type(t2)}')
+  print('-' * 30)
+  print(f'a:{a},type:{type(a)}')
   print('-' * 30)
 
   # 场景3: 创建随机整数张量.
