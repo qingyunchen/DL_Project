@@ -43,8 +43,6 @@ Sigmoid激活函数介绍:
     OMP: Error #15: Initializing libiomp5md.dll, but found libiomp5md.dll already initialized.
 
 """
-
-
 # 导包
 import torch
 import matplotlib.pyplot as plt
@@ -52,33 +50,11 @@ import matplotlib.pyplot as plt
 plt.rcParams['font.sans-serif'] = ['Noto Sans CJK JP'] 
 plt.rcParams['axes.unicode_minus'] = False
 
+# 1. 定义张量, 记录: 分类数据.
+# scores = torch.tensor([0.2, 0.02, 0.15, 0.15, 1.3, 0.5, 0.06, 1.1, 0.05, 3.75])
+scores = torch.tensor([[0.2, 0.35, 0.1, 0.46], [0.1, 0.13, 0.05, 2.79]])
+# 2. dim = 0, 按行计算
+probabilities = torch.softmax(scores, dim=1)
+print(probabilities)
 
-# 1. 创建画布和坐标轴, 1行2列.
-fig, axes = plt.subplots(1, 2)
 
-# 2. 生成 -20 ~ 20之间的 1000个数据点.
-x = torch.linspace(-20, 20, 1000)
-# print(f'x: {x}')
-
-# 3. 计算上述1000个点, Sigmoid激活函数处理后的值.
-y = torch.sigmoid(x)
-# print(f'y: {y}')
-
-# 4. 在第1个子图中绘制Sigmoid激活函数的图像.
-axes[0].plot(x, y)
-axes[0].set_title('Sigmoid激活函数图像')
-axes[0].grid()
-
-# 5. 在第2个图上, 绘制Sigmoid激活函数的导数图像.
-# 5.1 重新生成 -20 ~ 20之间的 1000个数据点.
-# 参1: 起始值, 参2: 结束值, 参3: 元素的个数, 参4: 是否需要求导.
-x = torch.linspace(-20, 20, 1000, requires_grad=True)
-
-# 5.2 具体的计算上述1000个点, Sigmoid激活函数导数后的值.
-torch.sigmoid(x).sum().backward()
-
-# 5.3 绘制图像.
-axes[1].plot(x.detach(), x.grad)
-axes[1].grid()
-plt.savefig("Sigmoid激活函数导数图像.png")
-plt.close()

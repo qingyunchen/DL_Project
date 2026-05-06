@@ -44,14 +44,12 @@ Sigmoid激活函数介绍:
 
 """
 
-
 # 导包
 import torch
 import matplotlib.pyplot as plt
 
 plt.rcParams['font.sans-serif'] = ['Noto Sans CJK JP'] 
 plt.rcParams['axes.unicode_minus'] = False
-
 
 # 1. 创建画布和坐标轴, 1行2列.
 fig, axes = plt.subplots(1, 2)
@@ -60,25 +58,26 @@ fig, axes = plt.subplots(1, 2)
 x = torch.linspace(-20, 20, 1000)
 # print(f'x: {x}')
 
-# 3. 计算上述1000个点, Sigmoid激活函数处理后的值.
-y = torch.sigmoid(x)
+# 3. 计算上述1000个点, ReLU激活函数处理后的值.
+y = torch.relu(x)
 # print(f'y: {y}')
 
-# 4. 在第1个子图中绘制Sigmoid激活函数的图像.
+# 4. 在第1个子图中绘制ReLU激活函数的图像.
 axes[0].plot(x, y)
-axes[0].set_title('Sigmoid激活函数图像')
+axes[0].set_title('ReLU激活函数图像')
 axes[0].grid()
 
-# 5. 在第2个图上, 绘制Sigmoid激活函数的导数图像.
+# 5. 在第2个图上, 绘制ReLU激活函数的导数图像.
 # 5.1 重新生成 -20 ~ 20之间的 1000个数据点.
 # 参1: 起始值, 参2: 结束值, 参3: 元素的个数, 参4: 是否需要求导.
 x = torch.linspace(-20, 20, 1000, requires_grad=True)
 
-# 5.2 具体的计算上述1000个点, Sigmoid激活函数导数后的值.
-torch.sigmoid(x).sum().backward()
+# 5.2 具体的计算上述1000个点, ReLU激活函数导数后的值.
+torch.relu(x).sum().backward()
 
 # 5.3 绘制图像.
 axes[1].plot(x.detach(), x.grad)
+axes[1].set_title('ReLU激活函数导数图像')
 axes[1].grid()
-plt.savefig("Sigmoid激活函数导数图像.png")
+plt.savefig('ReLU激活函数导数图像')
 plt.close()
